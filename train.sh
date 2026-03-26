@@ -1,0 +1,32 @@
+
+torchrun \
+    --nproc_per_node=8 \
+    --nnodes=1 \
+    --node_rank=0 \
+    --rdzv_endpoint=localhost:8000 \
+train/train_interleave.py \
+  --model_path /path/to/BAGEL-7B-MoT \
+  --resume-from /path/to/checkpoints/###### \
+  --num_worker 4 \
+  --expected_num_tokens 2048 \
+  --max_num_tokens 4096 \
+  --max_num_tokens_per_sample 2048 \
+  --num_replicate 1 \
+  --num_shard 8 \
+  --cpu_offload false \
+  --use_flex true \
+  --lr_scheduler constant \
+  --lr 2e-5 \
+  --total_steps 100000 \
+  --warmup_steps 2500 \
+  --predict_image true \
+  --mse_weight 1.0 \
+  --mse_act_weight 1.0 \
+  --log_every 10 \
+  --wandb_offline true \
+  --wandb_name vega \
+  --wandb_runid 0 \
+  --save_every 10000 \
+  --results_dir results \
+  --checkpoint_dir results/checkpoints \
+  --save_optimizer_shards false 

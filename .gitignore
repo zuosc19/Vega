@@ -1,0 +1,13 @@
+wandb
+__pycache__
+.vscode
+notebooks
+results
+*.ipynb_checkpoints
+eval_results
+tests
+.DS_Store
+gradio.sh
+data/bagel_example
+models/
+work_dir/
