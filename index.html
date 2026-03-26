@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="We propose Vega, a unified vision-language-world-action model for instruction-based generation and planning. ">
+  <meta name="keywords" content="Vega, Instruction-Based Driving, Vision-Language-World-Action Model, Autonomous Driving">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vega: Learning to Drive with Natural Language Instructions</title>
+
+
+  <meta property="og:title" content="Vega: Learning to Drive with Natural Language Instructions" />
+  <meta property="og:description"
+    content="We propose Vega, a unified vision-language-world-action model for instruction-based generation and planning. " />
+  <!-- Twitter automatically scrapes this. Go to https://cards-dev.twitter.com/validator?
+      if you update and want to force Twitter to re-scrape. -->
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:title" content="Vega: Learning to Drive with Natural Language Instructions" />
+  <meta property="twitter:description"
+    content="We propose Vega, a unified vision-language-world-action model for instruction-based generation and planning. " />
+  <!-- <meta property="twitter:image"         content="https://3dmagicpony.github.io/resources/overview.jpg" /> -->
+
+  <!-- MathJax library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-TSQGH8Q0WV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TSQGH8Q0WV');
+  </script> -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title" style="font-size: 2rem;">Vega: Learning to Drive with Natural Language Instructions</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://zuosc19.github.io/">Sicheng Zuo</a><sup>1, *</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://xuan03-thu.github.io/">Yuxuan Li</a><sup>1, *</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://wzzheng.net/">Wenzhao Zheng</a><sup>1, *, &dagger;</sup>,
+              </span>
+            <!-- </div>
+            <div class="is-size-5 publication-authors"> -->
+              <span class="author-block">
+                <a href="#">Zheng Zhu</a><sup>2</sup>
+              </span>
+              <span class="author-block">
+                <a href="#">Jie Zhou</a><sup>1</sup>
+              </span>
+              <span class="author-block">
+                <a href="http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/">Jiwen Lu</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Tsinghua University</span>&nbsp;&nbsp;
+              <span class="author-block"><sup>2</sup>GigaAI</span>&nbsp;&nbsp;
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-top: 10px;">
+              <span class="author-block"><sup>*</sup>Equal Contributions</span>&nbsp;&nbsp;
+              <!-- <span class="author-block"><sup>&ddagger;</sup>Research Advisor</span>&nbsp;&nbsp; -->
+              <span class="author-block"><sup>&dagger;</sup>Project Leader</span>&nbsp;&nbsp;
+              <!-- <span class="author-block"><sup>✉</sup>Corresponding Author</span> -->
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <!-- TODO change to arxiv link -->
+                  <a href="https://arxiv.org/abs/2603.xxxxx" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/zuosc19/Vega"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Hugging Face Link -->
+                <!-- <span class="link-block">
+                  <a href="https://huggingface.co/RainyNight/DVGT"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" 
+                          alt="Hugging Face" 
+                          style="width: 1.2em; vertical-align: middle;" />
+                    </span>
+                    <span>Hugging Face</span>
+                  </a>
+                </span> -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <style>
+    .video-border {
+      display: inline-block;
+      padding: 2px; /* adjust thickness of your 'border' */
+      border-radius: 4px;
+      background: linear-gradient(45deg, #2193b0, #6dd5ed); /* try different gradient colors */
+    }
+    .video-border video {
+      display: block;
+      border: none;
+      border-radius: 4px; /* match the wrapper for a consistent look */
+    }
+  </style>
+
+  <style>
+    #teaser-img {
+      max-width: 100%;
+      margin: 0 auto;
+      display: block;
+      border: none; /* remove the solid border */
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px 8px rgba(0, 0, 0, 0.15), 3px 3px 10px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    #instruction-img-1, #instruction-img-2, #experiments-img-1, #experiments-img-2 {
+      max-width: 90%;
+      margin: 0 auto;
+      display: block;
+      border: none; /* remove the solid border */
+      border-radius: 0;
+      box-shadow: none;
+    }
+    
+    #overview-img {
+      width: 75%;
+      margin: 0 auto;
+      display: block;
+      border: none;
+      border-radius: 0; /* removed border radius */
+      box-shadow: none; /* removed box shadow */
+    }
+
+    #architecture-img {
+      width: 80%;
+      margin: 0 auto;
+      display: block;
+      border: none;
+      border-radius: 0; /* removed border radius */
+      box-shadow: none; /* removed box shadow */
+    }
+    
+    /* Enhanced style to further reduce space between buttons and teaser video */
+    .hero.teaser {
+      padding-top: 0;
+      margin-top: -3rem; /* Added negative margin to pull the teaser section up */
+    }
+    .hero.teaser .hero-body {
+      padding-top: 0; /* Reduced from 1rem to 0 */
+    }
+  </style>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img id="teaser-img" src="./resources/vega_teaser.png" alt="Teaser">
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+        <div class="column is-full-width has-text-centered">
+
+
+          <h2 class="title is-4" style="font-weight: 700;">Instruction Following</h2>
+          <div class="content has-text-justified">
+            <p>
+              We provide two examples to visualize <b>Vega</b>'s instruction-based driving capabilities.
+              We select critical scenes, e.g. approaching the intersection,  where there can be multiple possible courses 
+              of action. For each scene, the model is given three instructions, predicts corresponding action plans, then
+              generates the resulting future observations. 
+              We observe that <b>Vega</b> is able to create action plans that are both scene-aware and instruction-driven. 
+              Moreover, it can generate highly realistic images that are consistent with the instructions 
+              and actions.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img id="instruction-img-1" src="./resources/instruction_1.png" alt="Instruction_1">
+          </div>
+          <div class="content has-text-centered">
+            <img id="instruction-img-2" src="./resources/instruction_2.png" alt="Instruction_2">
+          </div>
+          <br>
+
+
+          <h2 class="title is-4" style="font-weight: 700;">Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+              Compared to traditional imitation driving models, which can only predict a single expert trajectory or follow 
+              a limited set of navigation commands, <b>Vega</b> can generate multiple action plans and future images 
+              that follow diverse user instructions.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img id="overview-img" src="./resources/overview.png" alt="Overview">
+          </div>
+          <br>
+
+
+          <h2 class="title is-4" style="font-weight: 700;">Method</h2>
+          <div class="content has-text-justified">
+            <p>
+              <b>Vega</b> adopts a joint autoregressive-diffusion architecture to unify generation and planning. 
+              The model employs a Mixture-of-Transformers (MoT) backbone with three separate sets of modules for 
+              vision and language understanding, action planning, and world modeling. During inference, 
+              it uses Classifier-Free-Guidance Diffusion to generate both action plans and future observations. 
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img id="architecture-img" src="./resources/architecture.png" alt="Architecture">
+          </div>
+          <br>
+
+          <h2 class="title is-4" style="font-weight: 700;">Experiments</h2>
+          <div class="content has-text-justified">
+            <p>
+              Our model demonstrates competitive performance on both NAVSIM benchmarks. On NAVSIM v2, it scores 86.9 EPDMS 
+              without any additional performance-enhancing techniques. Using the best-of-N 
+              strategy as prior works, it achieves top performance of 89.4 EPDMS on NAVSIM v2. These results suggest that <b>Vega</b> 
+              has learned robust instruction following capabilities and benefited from future image prediction training. 
+              On NAVSIM v1, our model achieves 87.9 PDMS, matching multi-modal BEV methods, and improves to 89.8 with the 
+              best-of-N strategy. 
+              <!-- We note that competing VLA-based methods often require supplementary inputs such as multi-view images with 
+              high resolutions, or integrate CoT reasoning via additional RL training to achieve comparable performance. 
+              Critically, these performance-enhancing techniques operate independently of our model’s core architecture 
+              and may be modularly incorporated without modifying the primary design.  -->
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img id="experiments-img-2" src="./resources/v2_score.png" alt="Experiments_2">
+          </div>
+          <div class="content has-text-centered">
+            <img id="experiments-img-1" src="./resources/v1_score.png" alt="Experiments_1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- TODO replace with actual bibtex -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-4" style="font-weight: 700;">BibTeX</h2>
+      <pre><code>@inproceedings{zuo2026dvgt,
+  title={Vega: Learning to Drive with Natural Language Instructions}, 
+  author={Zuo, Sicheng and Li, Yuxuan and Zheng, Wenzhao and Zhu, Zheng and Zhou, Jie and Lu, Jiwen},
+  journal={arXiv preprint arXiv:2603.xxxxx},
+  year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This webpage template is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
+              under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
