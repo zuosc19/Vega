@@ -2,7 +2,7 @@
 
 <!-- ## 📖 Publications -->
 <div align="center">
-    <a href="https://arxiv.org/abs/2603.xxxxx"><img src="https://img.shields.io/badge/arXiv-2603.xxxxx-b31b1b" alt="arXiv"></a>
+    <a href="https://arxiv.org/abs/2603.25741"><img src="https://img.shields.io/badge/arXiv-2603.25741-b31b1b" alt="arXiv"></a>
     <a href='https://zuosc19.github.io/Vega/'><img src='https://img.shields.io/badge/Project_Page-Website-green?logo=googlechrome&logoColor=white' alt='Project Page'></a>
     <!-- <a href='https://huggingface.co/xxx/Vega'><img src='https://img.shields.io/badge/🤗%20Hugging%20Face-Vega-ffd21e'></a> -->
     
@@ -166,7 +166,7 @@ If you find this project helpful, please consider citing the following paper:
 @article{zuo2026vega,
   title={Vega: Learning to Drive with Natural Language Instructions}, 
   author={Zuo, Sicheng and Li, Yuxuan and Zheng, Wenzhao and Zhu, Zheng and Zhou, Jie and Lu, Jiwen},
-  journal={arXiv preprint arXiv:2603.xxxxx},
+  journal={arXiv preprint arXiv:2603.25741},
   year={2026}
 }
 ```
